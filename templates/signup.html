@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SafAI - Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif; background: #0a0a0a; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; color: #fff; }
+        .container { background: #1a1a1a; padding: 40px; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); width: 400px; border: 1px solid #2a2a2a; }
+        .logo { font-size: 32px; font-weight: 700; margin-bottom: 8px; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { text-align: center; color: #888; font-size: 14px; margin-bottom: 32px; }
+        input { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #2a2a2a; border-radius: 10px; background: #0a0a0a; color: #fff; font-size: 14px; transition: border-color 0.2s; }
+        input:focus { outline: none; border-color: #667eea; }
+        button { width: 100%; padding: 14px; margin-top: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border: none; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; transition: transform 0.2s; }
+        button:hover { transform: translateY(-2px); }
+        .link { text-align: center; margin-top: 20px; font-size: 14px; color: #888; }
+        .link a { color: #667eea; text-decoration: none; font-weight: 500; }
+        .link a:hover { text-decoration: underline; }
+        .flash { padding: 12px; margin-bottom: 20px; border-radius: 8px; font-size: 13px; }
+        .flash.success { background: rgba(52, 199, 89, 0.1); border: 1px solid #34c759; color: #34c759; }
+        .flash.error { background: rgba(255, 59, 48, 0.1); border: 1px solid #ff3b30; color: #ff3b30; }
+        .flash.warning { background: rgba(255, 159, 10, 0.1); border: 1px solid #ff9f0a; color: #ff9f0a; }
+        .info { padding: 12px; margin-bottom: 20px; background: rgba(102, 126, 234, 0.1); border: 1px solid #667eea; border-radius: 8px; font-size: 12px; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🤖 SafAI</div>
+        <div class="subtitle">Create Your Account</div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="info">
+            📧 You'll receive a verification email after signing up
+        </div>
+        
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required minlength="3">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required minlength="6">
+            <button type="submit">Sign Up</button>
+        </form>
+        
+        <div class="link">
+            Already have an account? <a href="/login">Login</a>
+        </div>
+    </div>
+</body>
+</html>
